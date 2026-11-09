@@ -38,4 +38,313 @@
                 <i class="fa-solid fa-file-signature w-5"></i> Monitoring BAST
             </button>
             <button id="nav-master" class="nav-btn w-full flex items-center gap-3 px-4 py-3 hover:bg-brand-green-dark rounded-lg transition-colors text-left font-medium">
-                <i class="fa-solid fa-database w-5
+                <i class="fa-solid fa-database w-5"></i> Master Data
+            </button>
+            <button id="nav-aset" class="nav-btn w-full flex items-center gap-3 px-4 py-3 hover:bg-brand-green-dark rounded-lg transition-colors text-left font-medium">
+                <i class="fa-solid fa-box-open w-5"></i> Monitoring Aset
+            </button>
+        </nav>
+        <div class="p-4 text-xs text-center text-green-200 border-t border-brand-green-dark">
+            © 2026 PT Dimensi Jaringan Bersinar
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 flex flex-col h-full relative overflow-hidden">
+        <!-- HEADER -->
+        <header class="bg-white shadow-sm h-16 flex items-center px-8 justify-between shrink-0">
+            <h2 id="page-title" class="text-lg font-semibold text-gray-700">Monitoring BAST Aset</h2>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-brand-green text-white flex items-center justify-center">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <span class="text-sm font-medium">Admin Warehouse</span>
+            </div>
+        </header>
+
+        <!-- CONTENT AREA -->
+        <div class="flex-1 p-6 overflow-y-auto">
+            
+            <!-- ========================================== -->
+            <!-- TAB 1: VIEW MONITORING BAST -->
+            <!-- ========================================== -->
+            <section id="view-bast" class="view-section flex flex-col h-full">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex-1 flex flex-col">
+                    <div class="flex flex-wrap justify-between items-center mb-4 gap-4">
+                        <h3 class="text-md font-bold text-gray-700">Daftar BAST Aset</h3>
+                        <div class="flex gap-3">
+                            <input type="text" id="filter-bast" placeholder="Filter Tanggal/Jenis/Penerima..." class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-brand-green w-64">
+                            <button id="btn-open-tambah-bast" class="bg-brand-green hover:bg-brand-green-dark text-white px-4 py-2 rounded shadow transition flex items-center text-sm font-medium">
+                                <i class="fa-solid fa-plus mr-2"></i> Tambah BAST
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto border rounded-lg flex-1">
+                        <table class="w-full text-sm text-left text-gray-600 whitespace-nowrap">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b sticky top-0">
+                                <tr>
+                                    <th class="px-4 py-3">No</th>
+                                    <th class="px-4 py-3">Tgl BAST</th>
+                                    <th class="px-4 py-3">No Surat</th>
+                                    <th class="px-4 py-3">Jenis Aset</th>
+                                    <th class="px-4 py-3">Nama Barang</th>
+                                    <th class="px-4 py-3">Pembangunan</th>
+                                    <th class="px-4 py-3">Penyerah</th>
+                                    <th class="px-4 py-3">Penerima</th>
+                                    <th class="px-4 py-3">No. Register ASL</th>
+                                    <th class="px-4 py-3">Keterangan</th>
+                                    <th class="px-4 py-3 text-center">Docs</th>
+                                    <th class="px-4 py-3 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-bast">
+                                <!-- Data akan di-render di sini oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- TAB 2: VIEW MASTER DATA -->
+            <!-- ========================================== -->
+            <section id="view-master" class="view-section hidden flex flex-col h-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+                    <!-- Master Barang -->
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-md font-bold text-gray-700">Master Nama Barang</h3>
+                            <button id="btn-tambah-barang" class="bg-brand-green hover:bg-brand-green-dark text-white px-3 py-1.5 rounded shadow transition text-sm flex items-center">
+                                <i class="fa-solid fa-plus mr-1"></i> Tambah
+                            </button>
+                        </div>
+                        <div class="overflow-y-auto border rounded-lg flex-1">
+                            <table class="w-full text-sm text-left text-gray-600">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b sticky top-0">
+                                    <tr>
+                                        <th class="px-4 py-3 w-16">No</th>
+                                        <th class="px-4 py-3">Nama Barang</th>
+                                        <th class="px-4 py-3 text-center w-24">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-master-barang"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <!-- Master Karyawan -->
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-md font-bold text-gray-700">Master Nama Karyawan</h3>
+                            <button id="btn-tambah-karyawan" class="bg-brand-green hover:bg-brand-green-dark text-white px-3 py-1.5 rounded shadow transition text-sm flex items-center">
+                                <i class="fa-solid fa-plus mr-1"></i> Tambah
+                            </button>
+                        </div>
+                        <div class="overflow-y-auto border rounded-lg flex-1">
+                            <table class="w-full text-sm text-left text-gray-600">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b sticky top-0">
+                                    <tr>
+                                        <th class="px-4 py-3 w-16">No</th>
+                                        <th class="px-4 py-3">Nama Karyawan</th>
+                                        <th class="px-4 py-3 text-center w-24">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody-master-karyawan"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================== -->
+            <!-- TAB 3: VIEW MONITORING ASET -->
+            <!-- ========================================== -->
+            <section id="view-aset" class="view-section hidden flex flex-col h-full">
+                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex-1 flex flex-col">
+                    <div class="flex flex-wrap justify-between items-center mb-4 gap-4">
+                        <h3 class="text-md font-bold text-gray-700">Distribusi Aset Karyawan</h3>
+                        <div class="flex gap-3">
+                            <input type="text" id="filter-aset-karyawan" placeholder="Filter Nama Karyawan..." class="border border-gray-300 rounded-lg px-4 py-2 text-sm focus:outline-brand-green w-64">
+                            <button id="btn-export-excel" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow transition flex items-center text-sm font-medium">
+                                <i class="fa-solid fa-file-excel mr-2"></i> Export Excel
+                            </button>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto border rounded-lg flex-1">
+                        <table class="w-full text-sm text-left text-gray-600 whitespace-nowrap">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b sticky top-0">
+                                <tr>
+                                    <th class="px-4 py-3">No</th>
+                                    <th class="px-4 py-3">Nama Karyawan</th>
+                                    <th class="px-4 py-3">Jenis Aset</th>
+                                    <th class="px-4 py-3">Nama Barang</th>
+                                    <th class="px-4 py-3">No. Register ASL</th>
+                                    <th class="px-4 py-3">No. BAST</th>
+                                    <th class="px-4 py-3 text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-monitoring-aset">
+                                <!-- Data akan di-render di sini oleh JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- ============================================== -->
+    <!-- MODALS AREA -->
+    <!-- ============================================== -->
+
+    <!-- Modal Tambah BAST -->
+    <div id="modal-tambah-bast" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[95vh] flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-lg font-bold text-gray-800">Form Tambah BAST Aset</h3>
+                <button class="btn-close-tambah text-gray-500 hover:text-red-500"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <form id="form-tambah-bast" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium mb-1">Tanggal Pembuatan</label>
+                        <input type="date" id="input-tgl" class="w-full border rounded p-2 text-sm focus:ring-brand-green" required>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium mb-1">No Urut Manual <span class="text-xs text-gray-400">(Opsional)</span></label>
+                        <input type="number" id="input-no-urut" class="w-full border rounded p-2 text-sm focus:ring-brand-green" placeholder="Contoh: 12">
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm font-medium mb-1">Nomor Surat BAST <span class="text-xs text-blue-500">(Otomatis/Read-only)</span></label>
+                        <input type="text" id="input-no-surat" class="w-full border rounded p-2 text-sm bg-gray-100" readonly placeholder="007/DJB-UHO/ASL/YYYY/Bulan/XXX">
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium mb-1">Jenis Aset</label>
+                        <select id="input-jenis-aset" class="w-full border rounded p-2 text-sm focus:ring-brand-green" required>
+                            <option value="" disabled selected>Pilih Jenis...</option>
+                            <option value="Office">Office</option>
+                            <option value="Infra Dalam">Infra Dalam</option>
+                            <option value="Infra Luar">Infra Luar</option>
+                        </select>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium mb-1">Nama Barang</label>
+                        <input type="text" id="input-nama-barang" list="list-barang" class="w-full border rounded p-2 text-sm focus:ring-brand-green" placeholder="Ketik atau pilih..." required>
+                        <datalist id="list-barang"></datalist>
+                    </div>
+                    <div class="col-span-1 md:col-span-2 p-3 bg-gray-50 border rounded-lg">
+                        <label class="block text-sm font-medium mb-2">Pembangunan</label>
+                        <div class="flex gap-4 items-center">
+                            <select id="input-pembangunan-dropdown" class="border rounded p-2 text-sm focus:ring-brand-green w-1/3">
+                                <option value="Tidak">Tidak</option>
+                                <option value="Ya">Ya</option>
+                            </select>
+                            <input type="text" id="input-pembangunan-teks" class="w-2/3 border rounded p-2 text-sm focus:ring-brand-green hidden" placeholder="Masukkan keterangan pembangunan...">
+                        </div>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium mb-1">Pihak Yang Menyerahkan</label>
+                        <input type="text" id="input-penyerah" list="list-karyawan" class="w-full border rounded p-2 text-sm focus:ring-brand-green" placeholder="Nama Karyawan..." required>
+                    </div>
+                    <div class="col-span-1">
+                        <label class="block text-sm font-medium mb-1">Pihak Yang Menerima</label>
+                        <input type="text" id="input-penerima" list="list-karyawan" class="w-full border rounded p-2 text-sm focus:ring-brand-green" placeholder="Nama Karyawan..." required>
+                        <datalist id="list-karyawan"></datalist>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm font-medium mb-1">No. Register ASL</label>
+                        <textarea id="input-register-asl" rows="3" class="w-full border rounded p-2 text-sm focus:ring-brand-green" placeholder="Gunakan Enter (baris baru) untuk memisahkan No. Register jika lebih dari satu" required></textarea>
+                    </div>
+                    <div class="col-span-1 md:col-span-2">
+                        <label class="block text-sm font-medium mb-1">Keterangan</label>
+                        <textarea id="input-keterangan" rows="2" class="w-full border rounded p-2 text-sm focus:ring-brand-green" placeholder="Isi disini jika BAST Tiang/Kabel dari Pembangunan Apa"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="p-4 border-t flex justify-end gap-3 bg-gray-50">
+                <button class="btn-close-tambah px-4 py-2 border rounded text-gray-600 hover:bg-gray-100 text-sm">Batal</button>
+                <button id="btn-submit-bast" class="px-4 py-2 bg-brand-green text-white rounded hover:bg-brand-green-dark text-sm">Buat BAST</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit BAST -->
+    <div id="modal-edit-bast" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-lg font-bold text-gray-800">Edit BAST Aset</h3>
+                <button class="btn-close-edit text-gray-500 hover:text-red-500"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+            <div class="p-6 overflow-y-auto flex-1">
+                <form id="form-edit-bast" class="grid grid-cols-1 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nomor Surat BAST</label>
+                        <input type="text" id="edit-no-surat" class="w-full border rounded p-2 text-sm bg-gray-100" readonly>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Jenis Aset</label>
+                        <select id="edit-jenis-aset" class="w-full border rounded p-2 text-sm focus:ring-brand-green" required>
+                            <option value="Office">Office</option>
+                            <option value="Infra Dalam">Infra Dalam</option>
+                            <option value="Infra Luar">Infra Luar</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nama Barang</label>
+                        <input type="text" id="edit-nama-barang" list="list-barang" class="w-full border rounded p-2 text-sm focus:ring-brand-green" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">No. Register ASL</label>
+                        <textarea id="edit-register-asl" rows="3" class="w-full border rounded p-2 text-sm focus:ring-brand-green" required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Penanggung Jawab</label>
+                        <input type="text" id="edit-penanggung-jawab" list="list-karyawan" class="w-full border rounded p-2 text-sm focus:ring-brand-green" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Link Spreadsheet</label>
+                        <input type="url" id="edit-link-spreadsheet" class="w-full border rounded p-2 text-sm focus:ring-brand-green">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Keterangan</label>
+                        <textarea id="edit-keterangan" rows="2" class="w-full border rounded p-2 text-sm focus:ring-brand-green"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="p-4 border-t flex justify-end gap-3 bg-gray-50">
+                <button class="btn-close-edit px-4 py-2 border rounded text-gray-600 hover:bg-gray-100 text-sm">Batal</button>
+                <button id="btn-save-edit-bast" class="px-4 py-2 bg-brand-green text-white rounded hover:bg-brand-green-dark text-sm">Simpan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Loading Overlay -->
+    <div id="modal-loading" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center hidden z-[60]">
+        <div class="bg-white p-6 rounded-lg shadow-lg flex flex-col items-center">
+            <i class="fa-solid fa-spinner fa-spin text-4xl text-brand-green mb-4"></i>
+            <p class="text-gray-700 font-medium">Memproses Data...</p>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Sukses -->
+    <div id="modal-sukses" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-[60]">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
+            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-3xl"></i>
+            </div>
+            <h3 class="text-lg font-bold text-gray-800 mb-2">Dokumen BAST Telah Dibuat!</h3>
+            <p class="text-sm text-gray-500 mb-6">Data telah tersimpan dan spreadsheet berhasil digenerate.</p>
+            <div class="flex justify-center gap-3">
+                <button id="btn-close-sukses" class="px-4 py-2 border rounded text-gray-600 hover:bg-gray-100 text-sm">Close</button>
+                <a href="#" id="link-lihat-dokumen" target="_blank" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm flex items-center gap-2">
+                    <i class="fa-brands fa-google-drive"></i> Lihat Dokumen
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Utama SPA -->
+    <script src="script.js"></script>
+</body>
+</html>
