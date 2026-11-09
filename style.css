@@ -1,28 +1,47 @@
-/* Custom Scrollbar untuk area konten */
+/* =========================================
+   CUSTOM SCROLLBAR (Merapikan Scroll Tabel & Konten)
+   ========================================= */
 ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f8fafc; /* bg-slate-50 */
+    border-radius: 4px;
 }
  
 ::-webkit-scrollbar-thumb {
-    background: #c1c1c1; 
+    background: #cbd5e1; /* bg-slate-300 */
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8; 
+    background: #94a3b8; /* bg-slate-400 */
 }
 
-/* Animasi sederhana saat pindah tab */
+/* =========================================
+   ANIMASI TRANSISI SPA
+   ========================================= */
+/* Animasi saat pindah Tab Menu */
 .view-section {
     animation: fadeIn 0.3s ease-in-out;
 }
 
+/* Animasi saat Modal/Pop-up Muncul */
+#modal-tambah-bast > div, 
+#modal-edit-bast > div, 
+#modal-sukses > div {
+    animation: scaleUp 0.25s ease-out forwards;
+}
+
+/* Keyframes untuk efek transisi */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(5px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleUp {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
